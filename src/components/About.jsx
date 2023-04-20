@@ -1,9 +1,24 @@
 import { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 
+const randomElement = (array) => {
+  const index = Math.floor(Math.random() * array.length)
+  return array[index]
+}
+
+const imageList = [
+  `https://picsum.photos/300/300/?random=2`,
+  `https://picsum.photos/300/300/?random=4`,
+  `https://picsum.photos/300/300/?random=6`,
+  `https://picsum.photos/300/300/?random=8`,
+]
+
+const colors = ['red', 'blue', 'black', 'salmon']
+
+
 export default function About() {
-  const [imgUrl, setImgUrl] = useState("");
-  const [nameColor, setNameColor] = useState("blue");
+  const [imgUrl, setImgUrl] = useState(randomElement(imageList));
+  const [nameColor, setNameColor] = useState(randomElement(colors));
 
   console.log(nameColor)
   return (
@@ -11,15 +26,13 @@ export default function About() {
       <Container>
         <Row className="text-center">
           <Col sm={12} md={6}>
-            <img src={imgUrl} className="rounded-circle" alt="Profile" />
-            <Button
+            <img src={imgUrl}
               onClick={() =>
-                setImgUrl("https://picsum.photos/300/300/?random=1")
+                setImgUrl(randomElement(imageList))
               }
-            >
-              Change 200 Image
-            </Button>
-            <Button onClick={() => setNameColor("red")}>
+              className="rounded-circle" alt="Profile" />
+            
+            <Button onClick={() => setNameColor(randomElement(colors))}>
               Change nameColor
             </Button>
           </Col>
